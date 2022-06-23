@@ -886,8 +886,13 @@ __SYSCALL(__NR_futex_waitv, sys_futex_waitv)
 #define __NR_set_mempolicy_home_node 450
 __SYSCALL(__NR_set_mempolicy_home_node, sys_set_mempolicy_home_node)
 
+#define __NR_getuserweight 451
+__SYSCALL(__NR_getuserweight, sys_getuserweight)
+#define __NR_setuserweight 452
+__SYSCALL(__NR_setuserweight, sys_setuserweight)
+
 #undef __NR_syscalls
-#define __NR_syscalls 451
+#define __NR_syscalls 453
 
 /*
  * 32 bit systems traditionally used different
