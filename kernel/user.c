@@ -200,7 +200,8 @@ struct user_struct *alloc_uid(kuid_t uid)
 		if (!new)
 			return NULL;
 
-		new->uid = uid;
+               new->uid = uid;
+               new->weight = 10;
 		refcount_set(&new->__count, 1);
 		if (user_epoll_alloc(new)) {
 			kmem_cache_free(uid_cachep, new);

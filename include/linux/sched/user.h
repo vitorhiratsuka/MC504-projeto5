@@ -33,6 +33,9 @@ struct user_struct {
 
 	/* Miscellaneous per-user rate limit */
 	struct ratelimit_state ratelimit;
+
+    /* User weight for the Weighted Round-Robin scheduler */
+    int weight;
 };
 
 extern int uids_sysfs_init(void);
