@@ -26,19 +26,20 @@ SYSCALL_DEFINE1( int, getuserweight, int, uid){
 		  
 }
 SYSCALL_DEFINE2(int, setuserweight, int, uid, int, weight){
-		struct user_struct *user;
+		struct user_struct *user,*mod;
 		kuid_t setter_uid;
+		mod = get_current_user();
 		if (uid==-1) user = get_current_user();
 		else{
 			setter_uid.val = uid;
 			user = find_user(setter_uid);
 		} //achando user
-		if (user==NULL){
+		if (user==NULL || weight<=0) {
 			errno = EINVAL;
 			return ERROR; //erro: não achou user
 		}
-		else if (weight<=0){
-			errno = EINVAL;
+		else if ((mod->uid).val != 0) {//erro: não é root
+			errno = EACCES
 			return ERROR;
 		}
 		user -> weight = weight;
