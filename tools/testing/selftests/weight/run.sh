@@ -1,3 +1,3 @@
 #!/bin/sh
 
-./functional/weight
+./functional/weight $1
