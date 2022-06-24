@@ -30,7 +30,7 @@ struct user_namespace init_user_ns = {
 		{
 			.extent[0] = {
 				.first = 0,
-				.lower_first = 0,.weight = ATOMIC_INIT(10),
+				.lower_first = 0,
 				.count = 4294967295U,
 			},
 		},
@@ -56,7 +56,7 @@ struct user_namespace init_user_ns = {
 		},
 	},
 	.ns.count = REFCOUNT_INIT(3),
-	.owner = GLOBAL_ROOT_UID,.weight = ATOMIC_INIT(10),
+	.owner = GLOBAL_ROOT_UID,
 	.group = GLOBAL_ROOT_GID,
 	.ns.inum = PROC_USER_INIT_INO,
 #ifdef CONFIG_USER_NS
@@ -97,10 +97,10 @@ static DEFINE_SPINLOCK(uidhash_lock);
 
 /* root_user.__count is 1, for init task cred */
 struct user_struct root_user = {
-	.__count	= REFCOUNT_INIT(1),
-	.uid		= GLOBAL_ROOT_UID,
-	.ratelimit	= RATELIMIT_STATE_INIT(root_user.ratelimit, 0, 0),
-	.weight = ATOMIC_INIT(10),
+	.__count = REFCOUNT_INIT(1),
+	.uid = GLOBAL_ROOT_UID,
+	.ratelimit = RATELIMIT_STATE_INIT(root_user.ratelimit, 0, 0),
+	.weight = 10,
 };
 
 /*
@@ -201,8 +201,8 @@ struct user_struct *alloc_uid(kuid_t uid)
 		if (!new)
 			return NULL;
 
-               new->uid = uid;
-               new->weight = 10;
+		new->uid = uid;
+		new->weight = 10;
 		refcount_set(&new->__count, 1);
 		if (user_epoll_alloc(new)) {
 			kmem_cache_free(uid_cachep, new);
