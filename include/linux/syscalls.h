@@ -709,6 +709,9 @@ asmlinkage long sys_sched_rr_get_interval(pid_t pid,
 asmlinkage long sys_sched_rr_get_interval_time32(pid_t pid,
 						 struct old_timespec32 __user *interval);
 
+asmlinkage int getuserweight(int uid);
+asmlinkage int setuserweight(int uid, int weight);
+
 /* kernel/signal.c */
 asmlinkage long sys_restart_syscall(void);
 asmlinkage long sys_kill(pid_t pid, int sig);
