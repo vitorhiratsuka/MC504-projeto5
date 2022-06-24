@@ -30,7 +30,7 @@ struct user_namespace init_user_ns = {
 		{
 			.extent[0] = {
 				.first = 0,
-				.lower_first = 0,
+				.lower_first = 0,.weight = ATOMIC_INIT(10),
 				.count = 4294967295U,
 			},
 		},
@@ -56,7 +56,7 @@ struct user_namespace init_user_ns = {
 		},
 	},
 	.ns.count = REFCOUNT_INIT(3),
-	.owner = GLOBAL_ROOT_UID,
+	.owner = GLOBAL_ROOT_UID,.weight = ATOMIC_INIT(10),
 	.group = GLOBAL_ROOT_GID,
 	.ns.inum = PROC_USER_INIT_INO,
 #ifdef CONFIG_USER_NS
@@ -100,6 +100,7 @@ struct user_struct root_user = {
 	.__count	= REFCOUNT_INIT(1),
 	.uid		= GLOBAL_ROOT_UID,
 	.ratelimit	= RATELIMIT_STATE_INIT(root_user.ratelimit, 0, 0),
+	.weight = ATOMIC_INIT(10),
 };
 
 /*

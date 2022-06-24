@@ -36,7 +36,7 @@ SYSCALL_DEFINE2(int, setuserweight, int, uid, int, weight){
 		} //achando user
 		if (user==NULL || weight<=0) {
 			errno = EINVAL;
-			return ERROR; //erro: não achou user
+			return ERROR; //erro: não achou user ou peso invalido
 		}
 		else if ((mod->uid).val != 0) {//erro: não é root
 			errno = EACCES
